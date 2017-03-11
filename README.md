@@ -14,7 +14,7 @@ gcc -Wall -Wextra -g -ansi -pedantic src/Stack.c src/Main.c  -o stack
 and the binary file 'stack' should be created in the same directory.
 
 ## Running
-To run the compiled code, simply type
+To run the compiled code, type
 ```
 ./stack
 ```
