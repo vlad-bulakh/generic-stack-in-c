@@ -52,3 +52,19 @@ Stack size: 0
 Stack destroyed.
 ```
 To run other test cases, simply uncomment them in the src/Main.c file and recompile the program.
+
+## Memory leaks
+If used properly, there should not be any memory leaks.  Sample valgrind output:
+```
+==2480== 
+==2480== HEAP SUMMARY:
+==2480==     in use at exit: 0 bytes in 0 blocks
+==2480==   total heap usage: 95 allocs, 95 frees, 3,348 bytes allocated
+==2480== 
+==2480== All heap blocks were freed -- no leaks are possible
+==2480== 
+==2480== For counts of detected and suppressed errors, rerun with: -v
+==2480== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+```
+
