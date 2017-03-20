@@ -60,13 +60,14 @@ void * stackPopFront(Stack ** stackPointerToPointer)
 {
 	Stack * stackPointer = (*stackPointerToPointer);
 	void * dataPointer = NULL;
-	node ** currentNode = &(stackPointer->topNode);
+	node ** currentNode = NULL;
 	node * previousNode = NULL;
 
 	assert(stackPointer != NULL);
 	assert(stackPointer->topNode != NULL);
 	assert(stackPointer->size > 0);
 
+	currentNode = &(stackPointer->topNode);
 	dataPointer = stackPointer->topNode->data;
 	previousNode = (*currentNode)->next;
 	freeAndNull(*currentNode);
@@ -171,7 +172,9 @@ void stackPrint(Stack ** stackPointerToPointer, void (*printFunction)(void *))
 	int itemPosition = 0;
 	char * smallDelimeter = repeatCharacter('-', SMALL_DELIMETER_LENGTH);
 	char * mediumDelimeter = repeatCharacter('~', MEDIUM_DELIMETER_LENGTH);
-
+	
+	assert(stackPointer != NULL);
+	
 	fprintf(stdout, "\n\n\n%s", mediumDelimeter);
 	fprintf(stdout, "\nBEGIN PRINTING STACK INFORMATION");
 	fprintf(stdout, "\n\n%s %lu", "Number of items in stack:", (unsigned long)stackSize(stackPointerToPointer));
