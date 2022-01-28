@@ -7,8 +7,7 @@
 
 #include "Stack.h"
 
-void testIntegers(Stack ** stack)
-{
+void testIntegers(Stack ** stack) {
 	int * removedItem = NULL;
 	int * item1= mallocAndBzero(sizeof(int));
 	int * item2= mallocAndBzero(sizeof(int));
@@ -42,8 +41,7 @@ void testIntegers(Stack ** stack)
 	stackPrintStackInformationIntegers(stack);
 }
 
-void testFloats(Stack ** stack)
-{
+void testFloats(Stack ** stack) {
 	float * removedItem = NULL;	
 	float * item1= mallocAndBzero(sizeof(float));
 	float * item2= mallocAndBzero(sizeof(float));
@@ -82,8 +80,7 @@ void testFloats(Stack ** stack)
 }
 
 
-void testDoubles(Stack ** stack)
-{
+void testDoubles(Stack ** stack) {
 	double * removedItem = NULL;	
 	double * item1= mallocAndBzero(sizeof(double));
 	double * item2= mallocAndBzero(sizeof(double));
@@ -122,8 +119,7 @@ void testDoubles(Stack ** stack)
 }
 
 
-void testCharacters(Stack ** stack)
-{
+void testCharacters(Stack ** stack) {
 	char * removedItem = NULL;
 	char * item1= mallocAndBzero(sizeof(char));
 	char * item2= mallocAndBzero(sizeof(char));
@@ -160,8 +156,7 @@ void testCharacters(Stack ** stack)
 	stackPrintStackInformationCharacters(stack);
 }
 
-void testCharacterStrings(Stack ** stack)
-{
+void testCharacterStrings(Stack ** stack) {
 	char *item1 = "first";
 	char *item2 = "second";
 	char *item3 = "third";
@@ -196,8 +191,7 @@ void testCharacterStrings(Stack ** stack)
 }
 
 
-int main()
-{    
+int main() {
 	Stack * stack = stackInitialize();
 	printf("\n\nStack initialized.\n\n");
 	

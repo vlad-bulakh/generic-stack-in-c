@@ -13,8 +13,7 @@ int MEDIUM_DELIMETER_LENGTH = 55;
 char NUL_TERMINATING_CHARACTER = '\0';
 
 /*-----------------------------------------------------*/
-Stack * stackInitialize()
-{
+Stack * stackInitialize() {
 	Stack * stackPointer = NULL;
 	stackPointer = mallocAndBzero(sizeof(Stack));
 	stackPointer->topNode = NULL;
@@ -22,8 +21,7 @@ Stack * stackInitialize()
 	return stackPointer;
 }
 
-void stackDestroy(Stack ** stackPointerToPointer)
-{
+void stackDestroy(Stack ** stackPointerToPointer) {
 	Stack * stackPointer = (*stackPointerToPointer);
 	assert(stackPointer != NULL);
 	freeAndNull(*stackPointerToPointer);
@@ -32,15 +30,13 @@ void stackDestroy(Stack ** stackPointerToPointer)
 
 
 /*-----------------------------------------------------*/
-size_t stackSize(Stack ** stackPointerToPointer)
-{
+size_t stackSize(Stack ** stackPointerToPointer) {
 	Stack * stackPointer = (*stackPointerToPointer);
 	assert(stackPointer != NULL);
 	return (stackPointer->size);
 }
 
-void stackPushFront(Stack ** stackPointerToPointer, void * dataPointer)
-{
+void stackPushFront(Stack ** stackPointerToPointer, void * dataPointer) {
 	Stack * stackPointer = (*stackPointerToPointer);
 	node * nodePointer =  NULL;
 
@@ -56,8 +52,7 @@ void stackPushFront(Stack ** stackPointerToPointer, void * dataPointer)
 	stackPointer->size += 1;
 }
 
-void * stackPopFront(Stack ** stackPointerToPointer)
-{
+void * stackPopFront(Stack ** stackPointerToPointer) {
 	Stack * stackPointer = (*stackPointerToPointer);
 	void * dataPointer = NULL;
 	node ** currentNode = NULL;
@@ -77,8 +72,7 @@ void * stackPopFront(Stack ** stackPointerToPointer)
 	return dataPointer;
 }
 
-void stackEraseAllElements(Stack ** stackPointerToPointer, int freeData)
-{
+void stackEraseAllElements(Stack ** stackPointerToPointer, int freeData) {
 	Stack * stackPointer = (*stackPointerToPointer);
 	node * tempNode = NULL;
 	node ** currentNode = NULL;
@@ -103,8 +97,7 @@ void stackEraseAllElements(Stack ** stackPointerToPointer, int freeData)
 
 
 /*-----------------------------------------------------*/
-void * mallocAndBzero(size_t size)
-{
+void * mallocAndBzero(size_t size) {
 	void * returnPointer = malloc(size);
 	if(returnPointer == NULL)
 	{
@@ -115,15 +108,12 @@ void * mallocAndBzero(size_t size)
 	return returnPointer;
 }
 
-void freeAndNullMemory(void ** memory)
-{
-	if (memory != NULL && (*memory) != NULL)
-	{
+void freeAndNullMemory(void ** memory) {
+	if (memory != NULL && (*memory) != NULL) {
 		free(*memory);
 		*memory = NULL;
-	}
-	else
-	{
+	} 
+	else {
 		fprintf(stderr, "\n\nError. Memory already free! \n\n");
 	}
 }
@@ -132,26 +122,22 @@ void freeAndNullMemory(void ** memory)
 
 
 /*-----------------------------------------------------*/
-char * repeatCharacter(char characterToPrint, size_t numberOfRepetitions)
-{
+char * repeatCharacter(char characterToPrint, size_t numberOfRepetitions) {
 	char * characterString = NULL;
 	char * tempCharacterString = NULL;
 	size_t characterStringSize = 0;
 
-	while (characterStringSize < numberOfRepetitions)
-	{
+	while (characterStringSize < numberOfRepetitions) {
 		tempCharacterString = mallocAndBzero((characterStringSize+2) * (sizeof(char)));
 		memcpy(tempCharacterString, characterString, characterStringSize);
-		if(characterString!=NULL)
-		{
+		if(characterString!=NULL) {
 			freeAndNull(characterString);
 		}
 		characterString = tempCharacterString;
 		characterString[characterStringSize] = characterToPrint;
 		characterStringSize++;
 	}
-	if (characterString!=NULL)
-	{
+	if (characterString!=NULL) {
 		characterString[characterStringSize] = NUL_TERMINATING_CHARACTER;
 	}
 
@@ -164,8 +150,7 @@ char * repeatCharacter(char characterToPrint, size_t numberOfRepetitions)
 
 /*PRINT FUNCTIONS*/
 /*-----------------------------------------------------*/
-void stackPrint(Stack ** stackPointerToPointer, void (*printFunction)(void *))
-{
+void stackPrint(Stack ** stackPointerToPointer, void (*printFunction)(void *)) {
 	Stack * stackPointer = (*stackPointerToPointer);
 	node ** current_node = NULL;
 	void * data = NULL;
@@ -182,8 +167,7 @@ void stackPrint(Stack ** stackPointerToPointer, void (*printFunction)(void *))
 	fprintf(stdout, "\n%s", smallDelimeter);
 
 	current_node = &(stackPointer->topNode);
-	while((*current_node) != NULL)
-	{
+	while((*current_node) != NULL) {
 		fprintf(stdout, "\n %d\t\t\t", itemPosition);
 		data = (*current_node)->data;
 		(*printFunction)(data);
@@ -198,86 +182,66 @@ void stackPrint(Stack ** stackPointerToPointer, void (*printFunction)(void *))
 	freeAndNull(mediumDelimeter);
 }
 
-void printInteger(void * valueToPrint)
-{
+void printInteger(void * valueToPrint) {
 	fprintf(stdout, "%d", *(int *)valueToPrint);
 }
-void printUnsignedInteger(void * valueToPrint)
-{
+void printUnsignedInteger(void * valueToPrint) {
 	fprintf(stdout, "%u", *(unsigned int *)valueToPrint);
 }
-void printShort(void * valueToPrint)
-{
+void printShort(void * valueToPrint) {
 	fprintf(stdout, "%hi", *(short *)valueToPrint);
 }
-void printUnsignedShort(void * valueToPrint)
-{
+void printUnsignedShort(void * valueToPrint) {
 	fprintf(stdout, "%hu", *(unsigned short *)valueToPrint);
 }
-void printLong(void * valueToPrint)
-{
+void printLong(void * valueToPrint) {
 	fprintf(stdout, "%li", *(long *)valueToPrint);
 }
-void printUnsignedLong(void * valueToPrint)
-{
+void printUnsignedLong(void * valueToPrint) {
 	fprintf(stdout, "%lu", *(unsigned long *)valueToPrint);
 }
-void printFloat(void * valueToPrint)
-{
+void printFloat(void * valueToPrint) {
 	fprintf(stdout, "%f", *(float *)valueToPrint);
 }
-void printDouble(void * valueToPrint)
-{
+void printDouble(void * valueToPrint) {
 	fprintf(stdout, "%f", *(double *)valueToPrint);
 }
-void printCharacter(void * valueToPrint)
-{
+void printCharacter(void * valueToPrint) {
 	fprintf(stdout, "%c", *(char *)valueToPrint);
 }
-void printCharacterString(void * valueToPrint)
-{
+void printCharacterString(void * valueToPrint) {
 	fprintf(stdout, "%s", (char *)valueToPrint);
 }
 
 
-void stackPrintStackInformationIntegers(Stack ** stackPointerToPointer)
-{
+void stackPrintStackInformationIntegers(Stack ** stackPointerToPointer) {
 	stackPrint(stackPointerToPointer, printInteger);
 }
-void stackPrintStackInformationUnsignedIntegers(Stack ** stackPointerToPointer)
-{
+void stackPrintStackInformationUnsignedIntegers(Stack ** stackPointerToPointer) {
 	stackPrint(stackPointerToPointer, printUnsignedInteger);
 }
-void stackPrintStackInformationShort(Stack ** stackPointerToPointer)
-{
+void stackPrintStackInformationShort(Stack ** stackPointerToPointer) {
 	stackPrint(stackPointerToPointer, printShort);
 }
-void stackPrintStackInformationUnsignedShort(Stack ** stackPointerToPointer)
-{
+void stackPrintStackInformationUnsignedShort(Stack ** stackPointerToPointer) {
 	stackPrint(stackPointerToPointer, printUnsignedShort);
 }
-void stackPrintStackInformationLong(Stack ** stackPointerToPointer)
-{
+void stackPrintStackInformationLong(Stack ** stackPointerToPointer) {
 	stackPrint(stackPointerToPointer, printLong);
 }
-void stackPrintStackInformationUnsignedLong(Stack ** stackPointerToPointer)
-{
+void stackPrintStackInformationUnsignedLong(Stack ** stackPointerToPointer) {
 	stackPrint(stackPointerToPointer, printUnsignedLong);
 }
-void stackPrintStackInformationFloats(Stack ** stackPointerToPointer)
-{
+void stackPrintStackInformationFloats(Stack ** stackPointerToPointer) {
 	stackPrint(stackPointerToPointer, printFloat);
 }
-void stackPrintStackInformationDoubles(Stack ** stackPointerToPointer)
-{
+void stackPrintStackInformationDoubles(Stack ** stackPointerToPointer) {
 	stackPrint(stackPointerToPointer, printDouble);
 }
-void stackPrintStackInformationCharacters(Stack ** stackPointerToPointer)
-{
+void stackPrintStackInformationCharacters(Stack ** stackPointerToPointer) {
 	stackPrint(stackPointerToPointer, printCharacter);
 }
-void stackPrintStackInformationCharacterStrings(Stack ** stackPointerToPointer)
-{
+void stackPrintStackInformationCharacterStrings(Stack ** stackPointerToPointer) {
 	stackPrint(stackPointerToPointer, printCharacterString);
 }
 /*-----------------------------------------------------*/
